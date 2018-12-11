@@ -22,6 +22,8 @@ public class TechParam {
 
     private String value;
 
+    private String showType; //表格 1   文本 0
+
     public Long getId() {
         return id;
     }
@@ -52,5 +54,13 @@ public class TechParam {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public String getShowType() {
+        return showType;
+    }
+
+    public void setShowType(String showType) {
+        this.showType = showType;
     }
 }

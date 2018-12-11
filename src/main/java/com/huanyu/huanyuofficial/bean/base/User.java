@@ -1,14 +1,15 @@
-package com.huanyu.huanyuofficial.vo;
+package com.huanyu.huanyuofficial.bean.base;
 
-/**
- * 登录参数
- */
-public class LoginParam {
-
+public class User {
     private String username;
-
     private String password;
 
+    public User() {
+    }
+
+    public User(String username) {
+        this.username = username;
+    }
 
     public String getUsername() {
         return username;
