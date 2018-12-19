@@ -25,7 +25,12 @@ public class ProductSelectionService {
     }
 
     public void addOrUpdate(List<ProductSelection> productSelections,Long pid){
-        productSelections.forEach(productSelection -> productSelection.setPid(pid));
+        productSelections.forEach((productSelection) -> {
+            productSelection.setPid(pid);
+            if (productSelection.getId()<0){
+                productSelection.setId(null);
+            }
+        });
         Iterable<ProductSelection> selectionIterable = Iterables.concat(productSelections);
         productSelectionRepository.saveAll(selectionIterable);
     }

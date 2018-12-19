@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("product")
 public class ProductController {
 
     @Autowired
@@ -26,13 +27,13 @@ public class ProductController {
     @Autowired
     private ProductSelectionService productSelectionService;
 
-    @GetMapping("products")
+    @GetMapping
     public BaseResponse<List<Product>> getAllProduct(){
         return productService.all();
     }
 
-    @ApiOperation("asdasdasd")
-    @GetMapping("product/{id}")
+    @ApiOperation("获取产品详情")
+    @GetMapping("{id}")
     public BaseResponse<ProductDetail> getProductDetail(@PathVariable Long id){
        // return productService.all();
         List<TechParam> techParams = teachParamService.allById(id);
@@ -46,13 +47,14 @@ public class ProductController {
         return new BaseResponse<>(200,"success",productDetail);
     }
 
-    @ApiOperation("asdasdasd")
-    @PostMapping
+    @ApiOperation("保存产品")
+    @PostMapping("save")
     @Transactional
     public BaseResponse save(@RequestBody ProductParam productParam){
         Long pid = productService.addOrUpdate(productParam.getProduct());
         productSelectionService.addOrUpdate(productParam.getProductSelections(),pid);
         teachParamService.addOrUpdate(productParam.getTechParams(),pid);
+        System.out.println(productParam.getProduct().getPtName());
         return new BaseResponse(200,"success");
     }
 }

@@ -9,13 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping("login")
 public class LoginController {
 
     @Autowired
     LoginService loginService;
 
     @ApiOperation("登陆")
-    @PostMapping("login")
+    @PostMapping
     public BaseResponse<User> login(@RequestBody LoginParam loginParam){
         return loginService.login(loginParam);
     }
