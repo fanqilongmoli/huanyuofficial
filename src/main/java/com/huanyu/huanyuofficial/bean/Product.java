@@ -21,7 +21,7 @@ public class Product {
     private String des;
     private String pFeature;
     private String pSYHYLY;
-    private String mianPic;
+    private String mainPic;
     private String secondPic;
     private String sizeLook;
 
@@ -73,12 +73,12 @@ public class Product {
         this.pSYHYLY = pSYHYLY;
     }
 
-    public String getMianPic() {
-        return mianPic;
+    public String getMainPic() {
+        return mainPic;
     }
 
-    public void setMianPic(String mianPic) {
-        this.mianPic = mianPic;
+    public void setMainPic(String mainPic) {
+        this.mainPic = mainPic;
     }
 
     public String getSecondPic() {

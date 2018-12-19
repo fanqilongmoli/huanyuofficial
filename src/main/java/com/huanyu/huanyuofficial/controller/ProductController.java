@@ -9,6 +9,7 @@ import com.huanyu.huanyuofficial.service.ProductService;
 import com.huanyu.huanyuofficial.service.TeachParamService;
 import com.huanyu.huanyuofficial.vo.ProductDetail;
 import com.huanyu.huanyuofficial.vo.ProductParam;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,7 @@ public class ProductController {
         return productService.all();
     }
 
+    @ApiOperation("asdasdasd")
     @GetMapping("product/{id}")
     public BaseResponse<ProductDetail> getProductDetail(@PathVariable Long id){
        // return productService.all();
@@ -44,7 +46,7 @@ public class ProductController {
         return new BaseResponse<>(200,"success",productDetail);
     }
 
-
+    @ApiOperation("asdasdasd")
     @PostMapping
     @Transactional
     public BaseResponse save(@RequestBody ProductParam productParam){
