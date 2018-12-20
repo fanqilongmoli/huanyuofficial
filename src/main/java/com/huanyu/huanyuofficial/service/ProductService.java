@@ -69,13 +69,8 @@ public class ProductService {
     }
 
 
-    public List<ProductSelection> allProductSelectionById(Long id){
-        List<Long> ids = new ArrayList<>();
-        ids.add(id);
-        Iterable<ProductSelection> productSelections = productSelectionRepository.findAllById(ids);
-        List<ProductSelection> selectionArrayList = new ArrayList<>();
-        productSelections.forEach(selectionArrayList::add);
-        return selectionArrayList;
+    public List<ProductSelection> allProductSelectionById(Long pid){
+        return productSelectionRepository.findAllByPidOrderById(pid);
     }
 
     public void addOrUpdateSelection(List<ProductSelection> productSelections,Long pid){
@@ -89,13 +84,8 @@ public class ProductService {
         productSelectionRepository.saveAll(selectionIterable);
     }
 
-    public List<TechParam> allTechParamById(Long id){
-        List<Long> ids = new ArrayList<>();
-        ids.add(id);
-        Iterable<TechParam> techParams = techParamRepository.findAllById(ids);
-        List<TechParam> paramArrayList = new ArrayList<>();
-        techParams.forEach(paramArrayList::add);
-        return paramArrayList;
+    public List<TechParam> allTechParamById(Long pid){
+        return techParamRepository.findTechParamByPidOrderBySort(pid);
     }
 
 

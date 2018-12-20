@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface TechParamRepository extends PagingAndSortingRepository<TechParam,Long> {
     List<TechParam> findTechParamByPidAndShowInTableOrderBySort(Long pid,Boolean show);
+    List<TechParam> findTechParamByPidOrderBySort(Long pid);
 }
