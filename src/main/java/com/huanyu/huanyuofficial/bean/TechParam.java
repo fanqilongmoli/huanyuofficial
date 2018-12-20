@@ -1,9 +1,10 @@
 package com.huanyu.huanyuofficial.bean;
 
 
-import io.swagger.annotations.ApiModelProperty;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 public class TechParam {
@@ -16,13 +17,32 @@ public class TechParam {
 
     private  Long pid;
 
-
     private String name;
 
 
     private String value;
 
     private String showType; //表格 1   文本 0
+
+    private Integer sort;
+
+    private Boolean showInTable;
+
+    public Boolean isShowInTable() {
+        return showInTable;
+    }
+
+    public void setShowInTable(Boolean showInTable) {
+        this.showInTable = showInTable;
+    }
+
+    public Integer getSort() {
+        return sort;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
 
     public Long getId() {
         return id;
