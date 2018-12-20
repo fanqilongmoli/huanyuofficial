@@ -1,15 +1,13 @@
 package com.huanyu.huanyuofficial.service;
 
 import com.google.common.collect.Iterables;
-import com.huanyu.huanyuofficial.bean.Product;
-import com.huanyu.huanyuofficial.bean.ProductSelection;
-import com.huanyu.huanyuofficial.bean.ProductWithTechParam;
-import com.huanyu.huanyuofficial.bean.TechParam;
+import com.huanyu.huanyuofficial.bean.*;
 import com.huanyu.huanyuofficial.bean.base.BaseResponse;
 import com.huanyu.huanyuofficial.repository.ProductRepository;
 import com.huanyu.huanyuofficial.repository.ProductSelectionRepository;
 import com.huanyu.huanyuofficial.repository.TechParamRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -39,10 +37,11 @@ public class ProductService {
         return listBaseResponse;
     }
 
-    public BaseResponse<List<ProductWithTechParam>> getAllProductDetail(int page,int size){
+    public BaseResponse<ProductWithTechParamRes> getAllProductDetail(int page, int size){
+        ProductWithTechParamRes productWithTechParamRes = new ProductWithTechParamRes();
         List<ProductWithTechParam> productWithTechParams = new ArrayList<>();
         PageRequest pageRequest = PageRequest.of(page, size, new Sort(Sort.Direction.ASC, "id"));
-        Iterable<Product> all = productRepository.findAll(pageRequest);
+        Page<Product> all = productRepository.findAll(pageRequest);
         all.forEach((item)->{
             item.setMainPic(null);
             item.setSecondPic(null);
@@ -53,7 +52,10 @@ public class ProductService {
             productWithTechParam.setTechParams(techParamByPidAndShowInTableOrderBySort);
             productWithTechParams.add(productWithTechParam);
         });
-        return new BaseResponse<>(200,"success",productWithTechParams);
+        productWithTechParamRes.setProductWithTechParams(productWithTechParams);
+        productWithTechParamRes.setTotal(all.getTotalElements());
+        productWithTechParamRes.setTotalPage(all.getTotalPages());
+        return new BaseResponse<>(200,"success",productWithTechParamRes);
     }
 
 

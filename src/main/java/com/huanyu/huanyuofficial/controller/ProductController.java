@@ -1,9 +1,6 @@
 package com.huanyu.huanyuofficial.controller;
 
-import com.huanyu.huanyuofficial.bean.Product;
-import com.huanyu.huanyuofficial.bean.ProductSelection;
-import com.huanyu.huanyuofficial.bean.ProductWithTechParam;
-import com.huanyu.huanyuofficial.bean.TechParam;
+import com.huanyu.huanyuofficial.bean.*;
 import com.huanyu.huanyuofficial.bean.base.BaseResponse;
 import com.huanyu.huanyuofficial.service.ProductService;
 import com.huanyu.huanyuofficial.vo.ProductDetail;
@@ -28,7 +25,7 @@ public class ProductController {
     }
 
     @GetMapping("products")
-    public BaseResponse<List<ProductWithTechParam>> getAllProductDetail(int page,int size){
+    public BaseResponse<ProductWithTechParamRes> getAllProductDetail(int page, int size){
         if (size==0){
             size=10;
         }
@@ -57,7 +54,7 @@ public class ProductController {
         Long pid = productService.addOrUpdate(productParam.getProduct());
         productService.addOrUpdateSelection(productParam.getProductSelections(),pid);
         productService.addOrUpdateTechParam(productParam.getTechParams(),pid);
-        System.out.println(productParam.getProduct().getPtName());
+        //System.out.println(productParam.getProduct().getPtName());
         return new BaseResponse(200,"success");
     }
 }

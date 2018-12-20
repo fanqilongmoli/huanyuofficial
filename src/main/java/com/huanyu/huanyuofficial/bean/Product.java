@@ -1,9 +1,6 @@
 package com.huanyu.huanyuofficial.bean;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -21,8 +18,12 @@ public class Product {
     private String des;
     private String pFeature;
     private String pSYHYLY;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     private String mainPic;
+    @Lob @Basic(fetch = FetchType.LAZY)
     private String secondPic;
+    @Lob @Basic(fetch = FetchType.LAZY)
     private String sizeLook;
 
     public Long getId() {
