@@ -29,6 +29,10 @@ public class ProductController {
         if (size==0){
             size=10;
         }
+        page = page-1;
+        if (page<=0){
+            page=0;
+        }
         return productService.getAllProductDetail(page,size);
     }
 
