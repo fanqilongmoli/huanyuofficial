@@ -58,7 +58,15 @@ public class ProductController {
         Long pid = productService.addOrUpdate(productParam.getProduct());
         productService.addOrUpdateSelection(productParam.getProductSelections(),pid);
         productService.addOrUpdateTechParam(productParam.getTechParams(),pid);
-        //System.out.println(productParam.getProduct().getPtName());
+        System.out.println(productParam.getProduct().getMainPic());
+        return new BaseResponse(200,"success");
+    }
+
+    @ApiOperation("删除产品")
+    @PostMapping("delete")
+    @Transactional
+    public BaseResponse delete(@RequestBody List<Long> ids){
+        productService.deleteProduct(ids);
         return new BaseResponse(200,"success");
     }
 }

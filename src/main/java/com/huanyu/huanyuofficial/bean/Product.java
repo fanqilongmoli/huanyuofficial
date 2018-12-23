@@ -18,13 +18,19 @@ public class Product {
     private String des;
     private String pFeature;
     private String pSYHYLY;
-    @Lob
-    @Basic(fetch = FetchType.LAZY)
     private String mainPic;
-    @Lob @Basic(fetch = FetchType.LAZY)
     private String secondPic;
-    @Lob @Basic(fetch = FetchType.LAZY)
     private String sizeLook;
+    private int delFlag; //1 删除  0 正常
+
+
+    public int getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(int delFlag) {
+        this.delFlag = delFlag;
+    }
 
     public Long getId() {
         return id;

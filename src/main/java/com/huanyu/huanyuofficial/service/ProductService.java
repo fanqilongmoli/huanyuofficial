@@ -29,7 +29,7 @@ public class ProductService {
     private TechParamRepository techParamRepository;
 
     public BaseResponse<List<Product>> all() {
-        Iterable<Product> all = productRepository.findAll();
+        Iterable<Product> all = productRepository.findAllByDelFlag(0);
         List<Product> products = new ArrayList<>();
         all.forEach(products::add);
         BaseResponse<List<Product>> listBaseResponse = new BaseResponse<>(200,"");
@@ -37,11 +37,20 @@ public class ProductService {
         return listBaseResponse;
     }
 
+    public void deleteProduct(List<Long> ids){
+        ids.forEach((item)->{
+            Product product = new Product();
+            product.setId(item);
+            product.setDelFlag(1);
+            productRepository.save(product);
+        });
+    }
+
     public BaseResponse<ProductWithTechParamRes> getAllProductDetail(int page, int size){
         ProductWithTechParamRes productWithTechParamRes = new ProductWithTechParamRes();
         List<ProductWithTechParam> productWithTechParams = new ArrayList<>();
         PageRequest pageRequest = PageRequest.of(page, size, new Sort(Sort.Direction.ASC, "id"));
-        Page<Product> all = productRepository.findAll(pageRequest);
+        Page<Product> all = productRepository.findAllPageByDelFlag(0,pageRequest);
         all.forEach((item)->{
             item.setMainPic(null);
             item.setSecondPic(null);
