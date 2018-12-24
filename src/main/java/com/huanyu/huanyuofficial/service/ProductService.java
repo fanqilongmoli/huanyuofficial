@@ -6,6 +6,7 @@ import com.huanyu.huanyuofficial.bean.base.BaseResponse;
 import com.huanyu.huanyuofficial.repository.ProductRepository;
 import com.huanyu.huanyuofficial.repository.ProductSelectionRepository;
 import com.huanyu.huanyuofficial.repository.TechParamRepository;
+import com.mysql.cj.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,11 +47,16 @@ public class ProductService {
         });
     }
 
-    public BaseResponse<ProductWithTechParamRes> getAllProductDetail(int page, int size){
+    public BaseResponse<ProductWithTechParamRes> getAllProductDetail(int page, int size,String ptName){
         ProductWithTechParamRes productWithTechParamRes = new ProductWithTechParamRes();
         List<ProductWithTechParam> productWithTechParams = new ArrayList<>();
         PageRequest pageRequest = PageRequest.of(page, size, new Sort(Sort.Direction.ASC, "id"));
-        Page<Product> all = productRepository.findAllPageByDelFlag(0,pageRequest);
+        Page<Product> all;
+        if (StringUtils.isNullOrEmpty(ptName)){
+            all = productRepository.findAllPageByDelFlag(0,pageRequest);
+        }else {
+            all =  productRepository.findProductsByDelFlagAndPtNameLike(0,"%"+ptName+"%",pageRequest);
+        }
         all.forEach((item)->{
             item.setMainPic(null);
             item.setSecondPic(null);

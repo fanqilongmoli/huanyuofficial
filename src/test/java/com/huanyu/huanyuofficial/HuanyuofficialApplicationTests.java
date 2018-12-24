@@ -39,8 +39,8 @@ public class HuanyuofficialApplicationTests {
 
     @Test
     public void products(){
-        PageRequest pageRequest = PageRequest.of(1, 10, new Sort(Sort.Direction.ASC, "id"));
-        Page<Product> page = productRepository.findAll(pageRequest);
+        PageRequest pageRequest = PageRequest.of(0, 10, new Sort(Sort.Direction.ASC, "id"));
+        Page<Product> page = productRepository.findProductsByDelFlagAndPtNameLike(0,"%123%",pageRequest);
         Page<Product> map = page.map((item) -> {
             item.setMainPic(null);
             return item;

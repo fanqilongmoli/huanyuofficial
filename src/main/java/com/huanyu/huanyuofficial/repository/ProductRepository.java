@@ -10,5 +10,5 @@ import java.util.List;
 public interface ProductRepository extends PagingAndSortingRepository<Product,Long> {
     List<Product> findAllByDelFlag(int delFlag);
     Page<Product> findAllPageByDelFlag(int delFlag, Pageable request);
-
+    Page<Product> findProductsByDelFlagAndPtNameLike(int delFlag,String ptName, Pageable request);
 }
