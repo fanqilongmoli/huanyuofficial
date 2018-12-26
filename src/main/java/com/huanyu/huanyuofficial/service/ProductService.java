@@ -1,6 +1,7 @@
 package com.huanyu.huanyuofficial.service;
 
 import com.google.common.collect.Iterables;
+import com.huanyu.huanyuofficial.HomeProductRes;
 import com.huanyu.huanyuofficial.bean.*;
 import com.huanyu.huanyuofficial.bean.base.BaseResponse;
 import com.huanyu.huanyuofficial.repository.ProductRepository;
@@ -29,13 +30,15 @@ public class ProductService {
     @Autowired
     private TechParamRepository techParamRepository;
 
-    public BaseResponse<List<Product>> all() {
-        Iterable<Product> all = productRepository.findAllByDelFlag(0);
-        List<Product> products = new ArrayList<>();
-        all.forEach(products::add);
-        BaseResponse<List<Product>> listBaseResponse = new BaseResponse<>(200,"");
-        listBaseResponse.setData(products);
-        return listBaseResponse;
+    public BaseResponse<HomeProductRes> all(int page, int size) {
+        PageRequest pageRequest = PageRequest.of(page, size, new Sort(Sort.Direction.ASC, "id"));
+        Page<Product> allProducts = productRepository.findAllPageByDelFlag(0, pageRequest);
+        HomeProductRes homeProductRes = new HomeProductRes();
+        homeProductRes.setPage(allProducts.getTotalPages());
+        homeProductRes.setTotal(allProducts.getTotalElements());
+        homeProductRes.setProducts(allProducts.getContent());
+        return new BaseResponse<>(200,"success",homeProductRes);
+
     }
 
     public void deleteProduct(List<Long> ids){

@@ -1,5 +1,6 @@
 package com.huanyu.huanyuofficial.controller;
 
+import com.huanyu.huanyuofficial.HomeProductRes;
 import com.huanyu.huanyuofficial.bean.Product;
 import com.huanyu.huanyuofficial.bean.ProductSelection;
 import com.huanyu.huanyuofficial.bean.ProductWithTechParamRes;
@@ -23,9 +24,18 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public BaseResponse<List<Product>> getAllProduct(){
-        return productService.all();
+    public BaseResponse<HomeProductRes> getAllProductByPage(int page, int size){
+        if (size==0){
+            size=10;
+        }
+        page = page-1;
+        if (page<=0){
+            page=0;
+        }
+        return productService.all(page,size);
+        //return productService.all();
     }
+
 
     @GetMapping("products")
     public BaseResponse<ProductWithTechParamRes> getAllProductDetail(int page, int size, String ptName){
