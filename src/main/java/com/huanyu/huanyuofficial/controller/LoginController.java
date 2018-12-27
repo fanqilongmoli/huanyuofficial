@@ -18,6 +18,7 @@ public class LoginController {
     @ApiOperation("登陆")
     @PostMapping
     public BaseResponse<User> login(@RequestBody LoginParam loginParam){
+        System.out.println(2/0);
         return loginService.login(loginParam);
     }
 }
