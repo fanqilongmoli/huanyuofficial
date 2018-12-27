@@ -18,12 +18,14 @@ import java.util.List;
 
 @RestController
 @RequestMapping("product")
+@CrossOrigin
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
     @GetMapping
+    @CrossOrigin
     public BaseResponse<HomeProductRes> getAllProductByPage(int page, int size){
         if (size==0){
             size=10;
@@ -51,6 +53,7 @@ public class ProductController {
 
     @ApiOperation("获取产品详情")
     @GetMapping("{id}")
+    @CrossOrigin
     public BaseResponse<ProductDetail> getProductDetail(@PathVariable Long id){
        // return productService.all();
         List<TechParam> techParams = productService.allTechParamById(id);
