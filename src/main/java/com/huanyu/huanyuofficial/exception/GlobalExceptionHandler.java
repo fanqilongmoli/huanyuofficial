@@ -19,6 +19,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = Exception.class)
     public void defaultExceptionHandle(Exception e) {
-       System.out.println("错误信息:---"+e.getMessage());
+        log.error(e.getMessage());
     }
 }
