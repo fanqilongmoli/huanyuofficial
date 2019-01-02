@@ -50,6 +50,7 @@ public class Base64ImageUtil
             }  
             //生成jpeg图片  D:\\tupian\\new.jpg
             String imageDir = System.getProperty("user.dir")+File.separator+"image";
+            System.out.println("图片路径:"+imageDir);
             String imgFilePath =  imageDir +File.separator+imageName;//新生成的图片
 
             File dir = new File(imageDir);
