@@ -54,7 +54,7 @@ public class Base64ImageUtil
             String imgFilePath =  imageDir +File.separator+imageName;//新生成的图片
 
             File dir = new File(imageDir);
-            if (dir.exists()){
+            if (!dir.exists()){
                 dir.mkdirs();
             }
 
