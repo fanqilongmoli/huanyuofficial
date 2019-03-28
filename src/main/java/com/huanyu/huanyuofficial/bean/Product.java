@@ -1,18 +1,18 @@
 package com.huanyu.huanyuofficial.bean;
 
+import com.huanyu.huanyuofficial.bean.base.BaseEntity;
+
 import javax.persistence.*;
 
 @Entity
-public class Product {
+public class Product extends BaseEntity {
 
     //  产品表   id 系列名 产品名 概述 产品特点 试用行业及领域  主图  辅助图  外形尺寸
 
     // 技术参数  id name vaule
 
     // 产品选型  id nodeLevel name value
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+
     private String pSeries;
     private String ptName;
     private String des;
@@ -21,24 +21,9 @@ public class Product {
     private String mainPic;
     private String secondPic;
     private String sizeLook;
-    private int delFlag; //1 删除  0 正常
+    private String productSelections;
+    private String productTech;
 
-
-    public int getDelFlag() {
-        return delFlag;
-    }
-
-    public void setDelFlag(int delFlag) {
-        this.delFlag = delFlag;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getpSeries() {
         return pSeries;
@@ -104,4 +89,19 @@ public class Product {
         this.sizeLook = sizeLook;
     }
 
+    public String getProductSelections() {
+        return productSelections;
+    }
+
+    public void setProductSelections(String productSelections) {
+        this.productSelections = productSelections;
+    }
+
+    public String getProductTech() {
+        return productTech;
+    }
+
+    public void setProductTech(String productTech) {
+        this.productTech = productTech;
+    }
 }

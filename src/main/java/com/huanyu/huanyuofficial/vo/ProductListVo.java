@@ -1,13 +1,13 @@
-package com.huanyu.huanyuofficial;
+package com.huanyu.huanyuofficial.vo;
 
 import com.huanyu.huanyuofficial.bean.Product;
 
 import java.util.List;
 
-public class HomeProductRes {
+public class ProductListVo {
     private long total;
     private int page;
-    private List<Product> products;
+    private List<Product> list;
 
     public long getTotal() {
         return total;
@@ -25,11 +25,11 @@ public class HomeProductRes {
         this.page = page;
     }
 
-    public List<Product> getProducts() {
-        return products;
+    public List<Product> getList() {
+        return list;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
+    public void setList(List<Product> list) {
+        this.list = list;
     }
 }

@@ -2,7 +2,7 @@ package com.huanyu.huanyuofficial.service;
 
 import com.huanyu.huanyuofficial.bean.base.BaseResponse;
 import com.huanyu.huanyuofficial.bean.base.User;
-import com.huanyu.huanyuofficial.vo.LoginParam;
+import com.huanyu.huanyuofficial.param.LoginParam;
 import org.springframework.stereotype.Service;
 
 @Service

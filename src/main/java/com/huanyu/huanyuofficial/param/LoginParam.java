@@ -1,4 +1,4 @@
-package com.huanyu.huanyuofficial.vo;
+package com.huanyu.huanyuofficial.param;
 
 /**
  * 登录参数
