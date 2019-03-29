@@ -2,12 +2,16 @@ package com.huanyu.huanyuofficial.bean;
 
 import com.huanyu.huanyuofficial.bean.base.BaseEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 
 @Entity
 public class News extends BaseEntity {
 
     private String mainImage;
+    @Lob
+    @Column(columnDefinition="TEXT")
     private String detail;
     private String title;
     private String[] newsImages;

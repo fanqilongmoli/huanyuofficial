@@ -2,21 +2,18 @@ package com.huanyu.huanyuofficial.bean;
 
 import com.huanyu.huanyuofficial.bean.base.BaseEntity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 
 @Entity
 public class Cases extends BaseEntity {
-/*"id": 1,
-        "casesType": "",
-        "name": "",
-        "caseImage": [
-        "1.jpg",
-        "2.jpg"
-        ],
-        "detail": ""*/
+
 private Integer casesType;
 private String name;
 private String[] caseImages;
+@Lob
+@Column(columnDefinition="TEXT")
 private String detail;
 
     public Integer getCasesType() {

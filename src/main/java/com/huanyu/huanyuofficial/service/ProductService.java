@@ -51,4 +51,21 @@ public class ProductService {
         return new BaseResponse(200,"success");
     }
 
+    public BaseResponse updateImage(Product product) {
+        Optional<Product> optionalProduct = productRepository.findById(product.getId());
+        boolean present = optionalProduct.isPresent();
+        if (present){
+            Product p = optionalProduct.get();
+            p.setSizeLook(product.getSizeLook());
+            p.setSecondPic(product.getSecondPic());
+            p.setMainPic(product.getMainPic());
+            p.setProductSelections(product.getProductSelections());
+            p.setProductTech(product.getProductTech());
+            productRepository.save(p);
+            return new BaseResponse(200,"success");
+        }else {
+            return new BaseResponse(404,"产品不存在！");
+        }
+    }
+
 }

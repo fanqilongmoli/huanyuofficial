@@ -1,18 +1,23 @@
 package com.huanyu.huanyuofficial.bean;
 
+import com.huanyu.huanyuofficial.bean.base.BaseEntity;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Lob;
 
 @Entity
-public class UserMessage {
+public class UserMessage extends BaseEntity {
    /*  "name": "",
              "call": "先生",
              "phone": "",
              "content": ""*/
 
    private String name;
-
-   private String call;
+   private String UserCall;
    private String phone;
+    @Lob
+    @Column(columnDefinition="TEXT")
    private String content;
 
     public String getName() {
@@ -23,12 +28,12 @@ public class UserMessage {
         this.name = name;
     }
 
-    public String getCall() {
-        return call;
+    public String getUserCall() {
+        return UserCall;
     }
 
-    public void setCall(String call) {
-        this.call = call;
+    public void setUserCall(String userCall) {
+        UserCall = userCall;
     }
 
     public String getPhone() {

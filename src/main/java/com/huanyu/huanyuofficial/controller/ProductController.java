@@ -48,4 +48,10 @@ public class ProductController {
     public BaseResponse delete(@RequestBody List<Long> ids){
        return productService.deleteProduct(ids);
     }
+
+    @PostMapping("images")
+    @CrossOrigin
+    public BaseResponse updateImage(@RequestBody Product product){
+        return productService.updateImage(product);
+    }
 }
